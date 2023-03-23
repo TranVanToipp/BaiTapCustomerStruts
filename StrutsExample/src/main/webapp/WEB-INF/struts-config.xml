@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC 
+"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" 
+"http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+
+	<form-beans>
+		<form-bean
+            name="loginBean"
+            type="fjs.com.Dto.T001Dto"/>
+			
+	</form-beans>
+	 <global-forwards>
+        <!-- Default forward to "Welcome" action -->
+        <!-- Demonstrates using index.jsp to forward -->
+         <forward name="T001" path="/T001.do"/>
+       
+    </global-forwards>
+	<action-mappings>
+		<action 
+			input="/pages/T001.jsp"
+			path="/T001"
+			type="fjs.com.action.T001"
+			 name="loginBean"
+			scope="request"
+			validate = "true">
+				<forward name="success" path="/T002.do"/>
+            	<forward name="fail" path="/pages/T001.jsp"/>
+			
+		</action>
+		
+		<action 
+			input="/pages/T001.jsp"
+			path="/T002"
+			type="fjs.com.action.T002"
+			 name="T002Dto"
+			scope="request"
+			validate = "true">
+				<forward name="success" path="/pages/T002.jsp"/>
+            	<forward name="fail" path="/pages/T001.jsp"/>
+			
+		</action>
+	</action-mappings>
+
+</struts-config>
